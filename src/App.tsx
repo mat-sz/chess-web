@@ -8,7 +8,14 @@ export const App: React.FC = () => {
       <div className="app">
         <Switch>
           <Route path="/">
-            <h1>Hello, world!</h1>
+            <div className="board">
+              {new Array(64).fill(undefined).map((_, i) => {
+                const black = Math.floor(i / 8) % 2 === i % 2;
+                return (
+                  <div key={i} className={black ? 'black' : 'white'}></div>
+                );
+              })}
+            </div>
           </Route>
         </Switch>
       </div>
