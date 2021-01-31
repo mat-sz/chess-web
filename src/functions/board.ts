@@ -25,3 +25,15 @@ export function newBoard(): PieceType[] {
     ...bottomRank,
   ];
 }
+
+export function indexToAN(index: number) {
+  const rank = 8 - Math.floor(index / 8);
+  const file = String.fromCharCode(97 + (index % 8));
+  return file + rank;
+}
+
+export function ANToIndex(notation: string) {
+  const rank = parseInt(notation.charAt(1));
+  const file = notation.charCodeAt(0) - 97;
+  return rank * 8 - 1 + file;
+}
