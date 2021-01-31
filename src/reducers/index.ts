@@ -1,24 +1,24 @@
 import { Store } from 'redux';
 import { ActionModel } from '../types/Models';
-import { SquareState } from '../types/SquareState';
+import { PieceType } from '../types/PieceType';
 
-function newBoard(): SquareState[] {
-  const emptyRank = new Array(8).fill(SquareState.EMPTY);
+function newBoard(): PieceType[] {
+  const emptyRank = new Array(8).fill(PieceType.EMPTY);
   const bottomRank = [
-    SquareState.WHITE_ROOK,
-    SquareState.WHITE_KNIGHT,
-    SquareState.WHITE_BISHOP,
-    SquareState.WHITE_KING,
-    SquareState.WHITE_QUEEN,
-    SquareState.WHITE_BISHOP,
-    SquareState.WHITE_KNIGHT,
-    SquareState.WHITE_ROOK,
+    PieceType.WHITE_ROOK,
+    PieceType.WHITE_KNIGHT,
+    PieceType.WHITE_BISHOP,
+    PieceType.WHITE_KING,
+    PieceType.WHITE_QUEEN,
+    PieceType.WHITE_BISHOP,
+    PieceType.WHITE_KNIGHT,
+    PieceType.WHITE_ROOK,
   ];
-  const pawnRank = new Array(8).fill(SquareState.WHITE_PAWN);
+  const pawnRank = new Array(8).fill(PieceType.WHITE_PAWN);
 
   return [
-    ...(bottomRank.map(piece => piece | 0x10) as SquareState[]),
-    ...(pawnRank.map(piece => piece | 0x10) as SquareState[]),
+    ...(bottomRank.map(piece => piece | 0x10) as PieceType[]),
+    ...(pawnRank.map(piece => piece | 0x10) as PieceType[]),
     ...emptyRank,
     ...emptyRank,
     ...emptyRank,
@@ -29,7 +29,7 @@ function newBoard(): SquareState[] {
 }
 
 export interface StateType {
-  board: SquareState[];
+  board: PieceType[];
 }
 
 let initialState: StateType = {

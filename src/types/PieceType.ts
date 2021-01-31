@@ -1,4 +1,4 @@
-export enum SquareState {
+export enum PieceType {
   EMPTY = 0x00,
   WHITE_PAWN = 0x01,
   WHITE_ROOK = 0x02,
