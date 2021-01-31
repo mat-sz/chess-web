@@ -12,7 +12,7 @@ export const Board: React.FC = () => {
       {board.map((type, i) => {
         const black = Math.floor(i / 8) % 2 === i % 2;
         return (
-          <div key={i} className={black ? 'black' : 'white'}>
+          <div key={i} className={'square ' + (black ? 'black' : 'white')}>
             <Piece type={type} />
           </div>
         );

@@ -13,7 +13,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
   switch (type & 0x0f) {
     case PieceType.WHITE_KING:
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
             fill="none"
             fillRule="evenodd"
@@ -39,7 +39,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
       );
     case PieceType.WHITE_QUEEN:
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
             fill={mainColor}
             fillRule="evenodd"
@@ -66,7 +66,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
       );
     case PieceType.WHITE_ROOK:
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
             fill={mainColor}
             fillRule="evenodd"
@@ -92,7 +92,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
       );
     case PieceType.WHITE_BISHOP:
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
             fill="none"
             fillRule="evenodd"
@@ -115,7 +115,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
       );
     case PieceType.WHITE_KNIGHT:
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
             fill="none"
             fillRule="evenodd"
@@ -146,7 +146,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
       );
     case PieceType.WHITE_PAWN:
       return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <path
             fill={mainColor}
             stroke={secondaryColor}

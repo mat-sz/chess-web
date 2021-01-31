@@ -28,6 +28,18 @@ body {
     border-radius: 5px;
   }
 
+  .square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      display: block;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
   .white {
     background: white;
   }
