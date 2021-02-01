@@ -1,10 +1,9 @@
 import { Store } from 'redux';
-import { newBoard } from '../functions/board';
+import { newBoard, BoardType } from '../functions/board';
 import { ActionModel } from '../types/Models';
-import { PieceType } from '../types/PieceType';
 
 export interface StateType {
-  board: PieceType[];
+  board: BoardType;
 }
 
 let initialState: StateType = {
