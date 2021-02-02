@@ -1,6 +1,4 @@
 // Define your Redux actions here.
 // e.g. ACTION = "action" (string is required)
-export enum ActionType {
-  // Board
-  SELECT = 'select',
-}
+export enum ActionType {}
+// Board
