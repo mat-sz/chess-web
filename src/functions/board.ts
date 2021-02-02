@@ -28,10 +28,19 @@ export function newBoard(): PieceType[] {
   ];
 }
 
-export function indexToAN(index: number) {
+export function indexToRF(index: number): [number, number] {
   const rank = 8 - Math.floor(index / 8);
-  const file = String.fromCharCode(97 + (index % 8));
-  return file + rank;
+  const file = (index % 8) + 1;
+  return [rank, file];
+}
+
+export function RFToIndex(rank: number, file: number): number {
+  return (8 - rank) * 8 + file - 1;
+}
+
+export function indexToAN(index: number) {
+  const [rank, file] = indexToRF(index);
+  return String.fromCharCode(96 + file) + rank;
 }
 
 export function ANToIndex(notation: string) {
@@ -42,23 +51,40 @@ export function ANToIndex(notation: string) {
 
 export function possibleMoves(board: BoardType, index: number): number[] {
   const piece = board[index];
-  const rank = 8 - Math.floor(index / 8);
-  const file = index % 8;
+  const [rank, file] = indexToRF(index);
   let moves: number[] = [];
 
   switch (piece) {
     case PieceType.BLACK_PAWN:
       moves = [index + 8];
 
-      if (file === 7) {
+      if (rank === 7) {
         moves.push(index + 16);
       }
       break;
     case PieceType.WHITE_PAWN:
       moves = [index - 8];
 
-      if (file === 2) {
+      if (rank === 2) {
         moves.push(index - 16);
+      }
+      break;
+    case PieceType.WHITE_ROOK:
+    case PieceType.BLACK_ROOK:
+      for (let i = file; i > 0; i--) {
+        moves.push(RFToIndex(rank, i));
+      }
+
+      for (let i = file; i <= 8; i++) {
+        moves.push(RFToIndex(rank, i));
+      }
+
+      for (let i = rank; i > 0; i--) {
+        moves.push(RFToIndex(i, file));
+      }
+
+      for (let i = rank; i <= 8; i++) {
+        moves.push(RFToIndex(i, file));
       }
       break;
   }
