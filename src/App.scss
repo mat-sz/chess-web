@@ -47,4 +47,12 @@ body {
   .black {
     background: black;
   }
+
+  .white.selected {
+    background: #9999ff;
+  }
+
+  .black.selected {
+    background: #3333ff;
+  }
 }
