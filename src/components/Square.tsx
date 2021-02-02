@@ -8,12 +8,14 @@ export interface SquareProps {
   index: number;
   type: PieceType;
   selected: boolean;
+  highlighted: boolean;
   onSelect: (index: number) => void;
 }
 
 export const Square: React.FC<SquareProps> = ({
   type,
   selected,
+  highlighted,
   index,
   onSelect,
 }) => {
@@ -27,6 +29,7 @@ export const Square: React.FC<SquareProps> = ({
         black,
         white: !black,
         selected,
+        highlighted,
       })}
     >
       <Piece type={type} />

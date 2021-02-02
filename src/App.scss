@@ -48,6 +48,14 @@ body {
     background: black;
   }
 
+  .white.highlighted {
+    background: #eeeeff;
+  }
+
+  .black.highlighted {
+    background: #1111ff;
+  }
+
   .white.selected {
     background: #9999ff;
   }
