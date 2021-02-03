@@ -34,7 +34,11 @@ export function indexToRF(index: number): [number, number] {
   return [rank, file];
 }
 
-export function RFToIndex(rank: number, file: number): number {
+export function RFToIndex(rank: number, file: number): number | undefined {
+  if (rank < 1 || rank > 8 || file < 1 || file > 8) {
+    return undefined;
+  }
+
   return (8 - rank) * 8 + file - 1;
 }
 
@@ -52,7 +56,43 @@ export function ANToIndex(notation: string) {
 export function possibleMoves(board: BoardType, index: number): number[] {
   const piece = board[index];
   const [rank, file] = indexToRF(index);
-  let moves: number[] = [];
+  let moves: (number | undefined)[] = [];
+
+  const addHV = () => {
+    for (let i = file; i > 0; i--) {
+      moves.push(RFToIndex(rank, i));
+    }
+
+    for (let i = file; i <= 8; i++) {
+      moves.push(RFToIndex(rank, i));
+    }
+
+    for (let i = rank; i > 0; i--) {
+      moves.push(RFToIndex(i, file));
+    }
+
+    for (let i = rank; i <= 8; i++) {
+      moves.push(RFToIndex(i, file));
+    }
+  };
+
+  const addDiagonal = () => {
+    for (let i = file, j = rank; i > 0 && j > 0; i--, j--) {
+      moves.push(RFToIndex(j, i));
+    }
+
+    for (let i = file, j = rank; i > 0 && j <= 8; i--, j++) {
+      moves.push(RFToIndex(j, i));
+    }
+
+    for (let i = file, j = rank; i <= 8 && j > 0; i++, j--) {
+      moves.push(RFToIndex(j, i));
+    }
+
+    for (let i = file, j = rank; i <= 8 && j <= 8; i++, j++) {
+      moves.push(RFToIndex(j, i));
+    }
+  };
 
   switch (piece) {
     case PieceType.BLACK_PAWN:
@@ -71,23 +111,49 @@ export function possibleMoves(board: BoardType, index: number): number[] {
       break;
     case PieceType.WHITE_ROOK:
     case PieceType.BLACK_ROOK:
-      for (let i = file; i > 0; i--) {
-        moves.push(RFToIndex(rank, i));
-      }
-
-      for (let i = file; i <= 8; i++) {
-        moves.push(RFToIndex(rank, i));
-      }
-
-      for (let i = rank; i > 0; i--) {
-        moves.push(RFToIndex(i, file));
-      }
-
-      for (let i = rank; i <= 8; i++) {
-        moves.push(RFToIndex(i, file));
-      }
+      addHV();
+      break;
+    case PieceType.WHITE_KNIGHT:
+    case PieceType.BLACK_KNIGHT:
+      moves.push(RFToIndex(rank - 1, file - 2));
+      moves.push(RFToIndex(rank + 1, file - 2));
+      moves.push(RFToIndex(rank - 1, file + 2));
+      moves.push(RFToIndex(rank + 1, file + 2));
+      moves.push(RFToIndex(rank - 2, file - 1));
+      moves.push(RFToIndex(rank - 2, file + 1));
+      moves.push(RFToIndex(rank + 2, file - 1));
+      moves.push(RFToIndex(rank + 2, file + 1));
+      break;
+    case PieceType.WHITE_BISHOP:
+    case PieceType.BLACK_BISHOP:
+      addDiagonal();
+      break;
+    case PieceType.WHITE_QUEEN:
+    case PieceType.BLACK_QUEEN:
+      addHV();
+      addDiagonal();
+      break;
+    case PieceType.WHITE_KING:
+    case PieceType.BLACK_KING:
+      moves.push(RFToIndex(rank - 1, file));
+      moves.push(RFToIndex(rank + 1, file));
+      moves.push(RFToIndex(rank, file - 1));
+      moves.push(RFToIndex(rank, file + 1));
+      moves.push(RFToIndex(rank - 1, file - 1));
+      moves.push(RFToIndex(rank - 1, file + 1));
+      moves.push(RFToIndex(rank + 1, file - 1));
+      moves.push(RFToIndex(rank + 1, file + 1));
       break;
   }
 
-  return moves;
+  const validMoves: number[] = [];
+  for (const index of moves) {
+    if (typeof index !== 'number') {
+      continue;
+    }
+
+    validMoves.push(index);
+  }
+
+  return validMoves;
 }

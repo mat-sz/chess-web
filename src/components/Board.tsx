@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { possibleMoves } from '../functions/board';
 
 import { StateType } from '../reducers';
