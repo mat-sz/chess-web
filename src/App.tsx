@@ -10,7 +10,9 @@ export const App: React.FC = () => {
       <div className="app">
         <Switch>
           <Route path="/">
-            <Board />
+            <div className="board-wrapper">
+              <Board />
+            </div>
           </Route>
         </Switch>
       </div>
