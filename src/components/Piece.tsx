@@ -11,7 +11,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
     type <= 0x10 ? ['white', 'black'] : ['black', 'white'];
 
   switch (type & 0x0f) {
-    case PieceType.WHITE_QUEEN:
+    case PieceType.WHITE_KING:
       return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
@@ -37,7 +37,7 @@ export const Piece: React.FC<PieceProps> = ({ type }) => {
           </g>
         </svg>
       );
-    case PieceType.WHITE_KING:
+    case PieceType.WHITE_QUEEN:
       return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
           <g
