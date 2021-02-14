@@ -20,7 +20,7 @@ export const Square: React.FC<SquareProps> = ({
   onSelect,
 }) => {
   const onClick = useCallback(() => onSelect(index), [onSelect, index]);
-  const black = Math.floor(index / 8) % 2 === index % 2;
+  const black = Math.floor(index / 8) % 2 !== index % 2;
 
   return (
     <div
