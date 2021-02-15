@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { indexToAN, possibleMoves } from '../functions/board';
 
 import { StateType } from '../reducers';
+import { PieceType } from '../types/PieceType';
 import { Square } from './Square';
 
 export const Board: React.FC = () => {
@@ -32,7 +33,10 @@ export const Board: React.FC = () => {
       </div>
       <div className="info">
         {typeof selectedIndex === 'number' && (
-          <span>Selected square: {indexToAN(selectedIndex)}</span>
+          <>
+            <div>Selected square: {indexToAN(selectedIndex)}</div>
+            <div>Selected piece: {PieceType[board[selectedIndex]]}</div>
+          </>
         )}
       </div>
     </>
