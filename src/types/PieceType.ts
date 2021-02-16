@@ -13,3 +13,24 @@ export enum PieceType {
   BLACK_QUEEN = 0x15,
   BLACK_KING = 0x16,
 }
+
+export const pieceToLetter = {
+  [PieceType.WHITE_PAWN]: 'P',
+  [PieceType.WHITE_ROOK]: 'R',
+  [PieceType.WHITE_KNIGHT]: 'N',
+  [PieceType.WHITE_BISHOP]: 'B',
+  [PieceType.WHITE_QUEEN]: 'Q',
+  [PieceType.BLACK_PAWN]: 'p',
+  [PieceType.BLACK_ROOK]: 'r',
+  [PieceType.BLACK_KNIGHT]: 'n',
+  [PieceType.BLACK_BISHOP]: 'b',
+  [PieceType.BLACK_QUEEN]: 'q',
+  [PieceType.EMPTY]: '',
+};
+
+export const letterToPiece: Record<string, PieceType> = Object.keys(
+  pieceToLetter
+).reduce((prev: any, key: string) => {
+  prev[(pieceToLetter as any)[key]] = key;
+  return prev;
+}, {});
