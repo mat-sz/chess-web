@@ -24,6 +24,7 @@ export const Board: React.FC = () => {
         {board.map((type, i) => (
           <Square
             index={i}
+            key={i}
             type={type}
             selected={selectedIndex === i}
             highlighted={highlightedSquares.includes(i)}
