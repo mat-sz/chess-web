@@ -20,11 +20,13 @@ export const pieceToLetter = {
   [PieceType.WHITE_KNIGHT]: 'N',
   [PieceType.WHITE_BISHOP]: 'B',
   [PieceType.WHITE_QUEEN]: 'Q',
+  [PieceType.WHITE_KING]: 'K',
   [PieceType.BLACK_PAWN]: 'p',
   [PieceType.BLACK_ROOK]: 'r',
   [PieceType.BLACK_KNIGHT]: 'n',
   [PieceType.BLACK_BISHOP]: 'b',
   [PieceType.BLACK_QUEEN]: 'q',
+  [PieceType.BLACK_KING]: 'k',
   [PieceType.EMPTY]: '',
 };
 

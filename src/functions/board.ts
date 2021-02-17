@@ -1,31 +1,40 @@
-import { PieceType } from '../types/PieceType';
+import { letterToPiece, PieceType } from '../types/PieceType';
 
+export const startingPosition =
+  'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
 export type BoardType = PieceType[];
 
-export function newBoard(): PieceType[] {
-  const emptyRank = new Array(8).fill(PieceType.EMPTY);
-  const bottomRank = [
-    PieceType.WHITE_ROOK,
-    PieceType.WHITE_KNIGHT,
-    PieceType.WHITE_BISHOP,
-    PieceType.WHITE_QUEEN,
-    PieceType.WHITE_KING,
-    PieceType.WHITE_BISHOP,
-    PieceType.WHITE_KNIGHT,
-    PieceType.WHITE_ROOK,
-  ];
-  const pawnRank = new Array(8).fill(PieceType.WHITE_PAWN);
+export function FENToBoard(fen: string): PieceType[] {
+  const board = new Array(64).fill(PieceType.EMPTY);
+  const ranks = fen.split(' ')[0].split('/');
+  if (ranks.length !== 8) {
+    throw new Error('Invalid FEN.');
+  }
 
-  return [
-    ...(bottomRank.map(piece => piece | 0x10) as PieceType[]),
-    ...(pawnRank.map(piece => piece | 0x10) as PieceType[]),
-    ...emptyRank,
-    ...emptyRank,
-    ...emptyRank,
-    ...emptyRank,
-    ...pawnRank,
-    ...bottomRank,
-  ];
+  let index = 0;
+  for (const rank of ranks) {
+    for (const square of rank.split('')) {
+      if (letterToPiece[square]) {
+        board[index] = letterToPiece[square];
+        index++;
+      } else if (parseInt(square)) {
+        for (let i = 0; i < parseInt(square); i++) {
+          board[index] = PieceType.EMPTY;
+          index++;
+        }
+      }
+    }
+
+    if (index % 8) {
+      throw new Error('Invalid FEN.');
+    }
+  }
+
+  return board;
+}
+
+export function newBoard(): PieceType[] {
+  return FENToBoard(startingPosition);
 }
 
 export function indexToRF(index: number): [number, number] {
